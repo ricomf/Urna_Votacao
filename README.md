@@ -1,1 +1,2 @@
-# Urna_Votacao
+# Urna
+Projeto simples de urna.
