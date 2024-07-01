@@ -207,5 +207,4 @@ classDiagram
 Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 =======
 # Urna
-Projeto simples de urna.
->>>>>>> 9ce91ea33e84074834f5674f33e9b821be8fe954
+Foram feitas alterações por Ricardo José para fins educacionais.
