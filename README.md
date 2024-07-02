@@ -1,4 +1,8 @@
 <<<<<<< HEAD
+
+# Urna
+Foram feitas alterações por Ricardo José para fins educacionais.
+
 # Voting Application
 ![Ruby](https://img.shields.io/badge/-Ruby-white?style=for-the-badge&logo=ruby&color=CC342D&logoColor=white)
 
@@ -206,6 +210,4 @@ classDiagram
 ## Licença
 Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 =======
-# Urna
-Projeto simples de urna.
->>>>>>> 9ce91ea33e84074834f5674f33e9b821be8fe954
+
