@@ -1,12 +1,18 @@
-require 'cpf_cnpj'
 require 'colorize'
+require './utils/limpa_tela'
 
 class UsuarioAutenticado
-  def autenticar_usuario(usuarios_autorizados)
+  def initialize
+    @usuarios_autorizados = ['12345678909', '74543726430']
+    @limpa_tela = TelaLimpa.new
+  end
+
+  def autenticar_usuario
     puts "Digite seu CPF para acessar o sistema:"
     cpf = gets.chomp
-    unless usuarios_autorizados.include?(cpf) && CPF.valid?(cpf)
-    limpar_tela
+
+    unless @usuarios_autorizados.include?(cpf)
+      @limpa_tela.limpar_tela
       banner = <<-BANNER
         /$$   /$$ /$$$$$$$$  /$$$$$$   /$$$$$$  /$$$$$$$   /$$$$$$ 
         | $$$ | $$| $$_____/ /$$__  $$ /$$__  $$| $$__  $$ /$$__  $$
@@ -17,33 +23,20 @@ class UsuarioAutenticado
         | $$ \\  $$| $$$$$$$$|  $$$$$$/| $$  | $$| $$$$$$$/|  $$$$$$/
         |__/  \\__/|________/ \\______/ |__/  |__/|_______/  \\______/ 
       BANNER
+
       red_color = :light_red
       dark_red_color = :red
-
       current_color = dark_red_color
 
-      for i in 1..5 do
-        colored_banner = banner.lines.map do |line|
-          line.chomp.colorize(current_color)
-        end.join("\n")
-
-        system('clear') || system('cls')  # Limpa a tela
-
+      5.times do
+        colored_banner = banner.lines.map { |line| line.chomp.colorize(current_color) }.join("\n")
+        @limpa_tela.limpar_tela
         puts colored_banner
-
-        sleep 1  #Espera 1 segundo antes de alternar as cores
-
+        sleep 1
         current_color = (current_color == dark_red_color) ? red_color : dark_red_color
       end
+
       exit
     end
   end
 end
-
-def validar_cpf(cpf)
-  CPF.valid?(cpf)
-end
-
-def limpar_tela
-    system('clear') || system('cls')
-  end

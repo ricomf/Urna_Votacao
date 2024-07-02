@@ -11,16 +11,17 @@ require './service/cpf_validation_service' # Importa a classe CPFValidationServi
 require './service/voting_storage_service' # Importa a classe VotingStorageService, responsável por armazenar e gerenciar os votos.
 require './service/usuario_autenticado'
 
+# Imports dos Utils
+
+require './utils/limpa_tela' # Importa a classe TelaLimpa, responsável por limpar a tela
+ 
 class VotingApplication
   # Método construtor para inicializar os serviços e views.
-  def limpar_tela
-      system('clear') || system('cls')
-    end
-
 
   def initialize
-    @usuarios_autorizados = ['12345678909', '74543726430'] #CPF autorizado
+    
     @usuario_autenticado = UsuarioAutenticado.new
+    @limpa_tela = TelaLimpa.new
 
     # Inicializa o serviço de Bloom Filter para verificar se um CPF já votou.
     @bloom_filter_service = BloomFilterService.new
@@ -45,13 +46,17 @@ class VotingApplication
 
     # Inicializa a view de exibição de resultados finais, passando o serviço de armazenamento de votos.
     @Result_view = ResultView.new(@voting_storage_service)
+     
   end
 
   # Método para executar a aplicação de votação.
   def run
-    limpar_tela
-    @usuario_autenticado.autenticar_usuario(@usuarios_autorizados)
-    loop do   
+    # Limpa a tela
+    @limpa_tela.limpar_tela
+    # Verifica que se o usuário está autorizado
+    @usuario_autenticado.autenticar_usuario
+    
+    loop do
       # Inicia a visualização de validação de CPF e obtém o CPF validado.
       cpf = @cpf_validation_view.start
 
